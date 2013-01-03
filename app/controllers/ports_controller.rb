@@ -43,12 +43,12 @@ class PortsController < ApplicationController
   def create
     @port = Port.new(params[:port])
     #this works just commented out for posterity
-    @somevar=AssignPort("access", "2")
+
+    @somevar=AssignPort("access", "2", "10")
 
     respond_to do |format|
       if @port.save
-        #format.html { redirect_to @port, notice: 'Port was successfully created.' }
-        format.html { redirect_to @port, notice: @somevar.inspect }
+        format.html { redirect_to @port, notice: 'Port was successfully created.' }
         format.json { render json: @port, status: :created, location: @port }
       else
         format.html { render action: "new" }
