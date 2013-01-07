@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130103161133) do
+ActiveRecord::Schema.define(:version => 20130103193058) do
 
   create_table "ports", :force => true do |t|
     t.string   "interface"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20130103161133) do
     t.string   "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "vlans"
+    t.string   "mode"
+    t.string   "nativevlan"
   end
 
   create_table "sessions", :force => true do |t|

@@ -1,13 +1,13 @@
 <h1>Listing ports</h1>
 
-<table>
+<table border=1>
   <tr>
     <th>Interface</th>
     <th>Switch</th>
     <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Mode</th>
+    <th>VLANs</th>
+    <th>Native VLAN</th>
   </tr>
 
 <% @ports.each do |port| %>
@@ -15,6 +15,9 @@
     <td><%= port.interface %></td>
     <td><%= Switch.find(port.switch_id).name %></td>
     <td><%= port.status %></td>
+    <td><%= port.mode %></td>
+    <td><%= port.vlans %></td>
+    <td><%= port.nativevlan %></td>
     <td><%= link_to 'Show', port %></td>
     <td><%= link_to 'Edit', edit_port_path(port) %></td>
     <td><%= link_to 'Destroy', port, method: :delete, data: { confirm: 'Are you sure?' } %></td>

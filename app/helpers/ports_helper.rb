@@ -3,6 +3,9 @@ module PortsHelper
   # @param [Object] vlans
   def AssignPort(porttype,vlans,nativevlan)
     @unassignedport=Port.where(status: "UNASSIGNED").sample
+    @port.interface = @unassignedport.interface
+    @port.status = "ASSIGNED"
+    @port.save
     if porttype == "access"
 
 
@@ -18,6 +21,7 @@ module PortsHelper
               echo \"switchport mode trunk\" #{filepath}\n
               echo \"switchport trunk native vlan #{nativevlan}\" #{filepath}\n
               echo \"switchport trunk allowed vlan #{vlans}\" #{filepath}\n
+              echo \"description #{@port.status}\" #{filepath}\n
               "
 
       @output=ssh.exec @cmd
@@ -25,6 +29,6 @@ module PortsHelper
 
     end
     #run some magic on unassigned port
-
+    @unassignedport.destroy
   end
 end
